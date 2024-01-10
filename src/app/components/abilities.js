@@ -21,7 +21,7 @@ export default function AbilitySelect() {
   }
   return (
     <DebounceSelect
-      mode="multiple"
+      showSearch
       value={value}
       placeholder="Select Abilities"
       fetchOptions={fetchAbilities}

@@ -3,12 +3,14 @@ import debounce from "lodash/debounce";
 import { Select, Spin } from "antd";
 export default function DebounceSelect({
   fetchOptions,
-  debounceTimeout = 200,
+  debounceTimeout = 20,
   ...props
 }) {
   const [fetching, setFetching] = useState(false);
   const [options, setOptions] = useState([]);
   const fetchRef = useRef(0);
+  const filterOption = (input, option) =>
+    (option?.label ?? "").toLowerCase().includes(input.toLowerCase());
   const debounceFetcher = useMemo(() => {
     const loadOptions = (value) => {
       fetchRef.current += 1;
@@ -28,8 +30,8 @@ export default function DebounceSelect({
   }, [fetchOptions, debounceTimeout]);
   return (
     <Select
+      filterOption={filterOption}
       labelInValue
-      filterOption={false}
       onSearch={debounceFetcher}
       notFoundContent={fetching ? <Spin size="small" /> : null}
       {...props}

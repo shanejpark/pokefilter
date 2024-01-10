@@ -4,11 +4,14 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import MoveSelect from "./components/moves";
 import AbilitySelect from "./components/abilities";
+import TypeSelect from "./components/types";
 
 export default function Home() {
   return (
     <main className={styles.main}>
       <AbilitySelect />
+      <MoveSelect />
+      <TypeSelect />
 
       <div className={styles.grid}>
         <a
